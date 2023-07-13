@@ -1,4 +1,5 @@
 -- creates a table users
+-- with attr id name email
 USE holberton;
 CREATE TABLE IF NOT EXISTS users (
     id INT NOT NULL AUTO_INCREMENT UNIQUE,

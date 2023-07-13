@@ -1,4 +1,5 @@
 -- creates a table users
+-- with attribute name email id country
 USE holberton;
 CREATE TABLE IF NOT EXISTS users (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
