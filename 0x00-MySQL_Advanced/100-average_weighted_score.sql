@@ -6,7 +6,7 @@ BEGIN
     DECLARE weighted_average INT DEFAULT 0;
     DECLARE total_weight INT DEFAULT 0;
 
-    SELECT SUM(score * weight) / SUM(weight) INTO weighted_average 
+    SELECT SUM(score * weight) INTO weighted_average 
     FROM corrections 
     RIGHT JOIN projects ON corrections.project_id = projects.id 
     WHERE corrections.user_id = user_id;
@@ -22,7 +22,7 @@ BEGIN
         WHERE id = user_id;
     ELSE
         UPDATE users
-        SET average_score = weighted_average
+        SET average_score = weighted_average / total_weight
         WHERE id = user_id;
     END IF;
 END$$
