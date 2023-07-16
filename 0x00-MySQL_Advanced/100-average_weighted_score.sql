@@ -4,14 +4,14 @@ DELIMITER $$
 CREATE PROCEDURE ComputeAverageWeightedScoreForUser(IN user_id  INT)
 BEGIN
     DECLARE weighted_average INT DEFAULT 0;
-    DECLARE total_weight INT;
+    DECLARE total_weight INT DEFAULT 0;
 
     SELECT SUM(score * weight) / SUM(weight) INTO weighted_average 
     FROM corrections 
     RIGHT JOIN projects ON corrections.project_id = projects.id 
     WHERE corrections.user_id = user_id;
 
-    SELECT SUM(score * weight) / SUM(weight) INTO total_weight
+    SELECT SUM(weight) INTO total_weight
     FROM corrections
     RIGHT JOIN projects ON corrections.project_id = projects.id
     WHERE corrections.user_id = user_id;
