@@ -15,11 +15,11 @@ def getlogs():
     patch = collection.count_documents({"method": "PATCH"})
     delete = collection.count_documents({"method": "DELETE"})
     path = collection.count_documents({"path": "/status"})
-    print(f"""{logs} logs\nMethods:
-    method GET: {get}
-    method POST: {post}
-    method PUT: {put}
-    method PATCH: {patch}
+    print(f"""{logs} logs\nMethods:\t
+    method GET: {get}\t
+    method POST: {post}\t
+    method PUT: {put}\t
+    method PATCH: {patch}\t
     method DELETE: {delete}\n{path} status check""")
 
 
