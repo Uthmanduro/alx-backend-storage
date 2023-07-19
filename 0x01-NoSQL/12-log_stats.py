@@ -23,4 +23,5 @@ def getlogs():
     method DELETE: {delete}\n{path} status check""")
 
 
-getlogs()
+if __name__ == "__main__":
+    getlogs()
