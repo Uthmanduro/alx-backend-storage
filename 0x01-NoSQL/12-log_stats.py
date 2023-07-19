@@ -8,19 +8,20 @@ def getlogs():
     client = MongoClient()
     db = client["logs"]
     collection = db.nginx
-    logs = len(list(collection.find()))
+    logs = collection.count_documents({})
     get = collection.count_documents({"method": "GET"})
     post = collection.count_documents({"method": "POST"})
     put = collection.count_documents({"method": "PUT"})
     patch = collection.count_documents({"method": "PATCH"})
     delete = collection.count_documents({"method": "DELETE"})
     path = collection.count_documents({"path": "/status"})
-    print(f"""{logs} logs\nMethods:
-    method GET: {get}\t
-    method POST: {post}\t
-    method PUT: {put}\t
-    method PATCH: {patch}\t
-    method DELETE: {delete}\n{path} status check""")
+    print("""{} logs\nMethods:
+    method GET: {}\t
+    method POST: {}\t
+    method PUT: {}\t
+    method PATCH: {}\t
+    method DELETE: {}\n{} status check""".format(logs, get, post,\
+            put, patch, delete, path))
 
 
 if __name__ == "__main__":
