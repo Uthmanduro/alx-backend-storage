@@ -13,7 +13,7 @@ def count_calls(method: Callable) -> Callable:
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         """wrapper function that performs the operation"""
-        self._redis.incrby(key, 1)
+        self._redis.incr(key)
         return method(self, *args, **kwargs)
     return wrapper
 
@@ -26,7 +26,7 @@ class Cache:
         self._redis.flushdb()
 
     @count_calls
-    def store(self, data: Union[str, int, bytes, float]) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """returns a string"""
         random_id = str(uuid.uuid4())
         self._redis.mset({random_id: data})
