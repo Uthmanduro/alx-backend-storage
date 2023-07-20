@@ -15,7 +15,7 @@ class Cache:
     def store(self, data: Union[str, int, bytes, float]) -> str:
         """returns a string"""
         random_id = str(uuid.uuid4())
-        self._redis.set(random_id, data)
+        self._redis.mset({random_id: data})
         return random_id
 
     def get(self, key: str, fn: Optional[Callable]) -> str:
